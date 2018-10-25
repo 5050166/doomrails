@@ -1,0 +1,96 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - ball
+  - big ball
+  - bullet
+  - ground
+  - coin
+  - gun
+  - Box
+  - wheel
+  - hammer
+  - gun1
+  - gun2
+  - gun3
+  - bulletbox
+  - gun4
+  - gun5
+  - gun6
+  - gun7
+  - gun8
+  - gun9
+  - gun10
+  - gun11
+  - gun12
+  - gun13
+  - gun14
+  - gun15
+  - gun16
+  - gun17
+  - gun18
+  - upwall
+  - right
+  - left
+  - bottom
+  - gun19
+  - gun20
+  - gun21
+  - gun22
+  - gun23
+  - gun24
+  - gun25
+  - gun26
+  - gun27
+  - gun28
+  - gun29
+  - gun30
+  - gun31
+  - gun32
+  - gun33
+  - gun34
+  - gun35
+  - gun36
+  - gun37
+  - gun38
+  - gun39
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Coin
+  - ball
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

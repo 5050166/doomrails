@@ -1,0 +1,10 @@
+// Boundary
+using System;
+
+[Serializable]
+public class Boundary   //…Ë÷√ÕÊº““∆∂Ø∑∂Œß
+{
+	public float xMin;  
+
+	public float xMax;
+}
