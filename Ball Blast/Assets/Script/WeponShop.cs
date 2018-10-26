@@ -16,6 +16,8 @@ public class WeponShop : MonoBehaviour
 
     public GameObject DataMenu; //gun信息框
 
+    public GameObject mask;    //遮蔽
+
     public Image Bullet;      //子弹图标
 
     public Image weapon;     //武器图标
@@ -89,6 +91,8 @@ public class WeponShop : MonoBehaviour
             if (DataMenu.transform.localScale.y == 1)
             {
                 DataMenu.transform.DOScale(0f, tweentime);
+
+                mask.transform.DOScale(0f, 0f);
                 StartCoroutine(Inactive("Closewindow", tweentime));
             }
         });
@@ -367,6 +371,7 @@ public class WeponShop : MonoBehaviour
                 {
                     DataMenu.SetActive(true);
                     DataMenu.transform.DOScale(1f, tweentime); //播放动画并设置时间
+                    mask.transform.DOScale(1f, 0f);
                     StartCoroutine(Inactive("Openwindow", tweentime));
                     //子彈     
                     string a = string.Concat(SelectedObject.transform.parent.name.Split(new char[] { 'g', 'u', 'n' }));
