@@ -18,12 +18,13 @@ public class Box : MonoBehaviour
 
     private void Start()
     {
-        MainMenuUI.Instance.IsFirstPlayGame();
-        LoadAllBox();
+        DataManager.Instance.loadbox(); //载入box信息
+        MainMenuUI.Instance.IsFirstPlayGame();//是否是初次进入游戏
+        LoadAllBox();  //载入box
+
         if (ES3.FileExists("SaveData.es3"))
         {
-
-        LoadAllFrame();
+            LoadAllFrame(); //载入所有的框架
         }
     }
 
@@ -290,7 +291,7 @@ public class Box : MonoBehaviour
                 transform.GetChild(2).gameObject.SetActive(true);
                 transform.GetChild(3).gameObject.SetActive(true);
                 transform.GetChild(3).gameObject.GetComponent<Image>().sprite = Prefabmanager.Instance.sprites[16];
-                transform.GetChild(3).gameObject.GetComponent<Image>().SetNativeSize();            
+                transform.GetChild(3).gameObject.GetComponent<Image>().SetNativeSize();
                 transform.GetChild(3).gameObject.AddComponent<RoteCannon>();
 
                 transform.GetChild(3).localScale = new Vector3(0.6f, 0.6f);
@@ -360,7 +361,7 @@ public class Box : MonoBehaviour
                 {
                     transform.GetChild(1).gameObject.SetActive(true);  //显示轮子
                 }
-            
+
                 transform.gameObject.tag = "gun22";
                 this.transform.GetChild(0).gameObject.SetActive(false);  //锁
                 transform.GetChild(2).gameObject.SetActive(true);
@@ -376,7 +377,7 @@ public class Box : MonoBehaviour
                 {
                     transform.GetChild(1).gameObject.SetActive(true);  //显示轮子
                 }
-               
+
                 transform.gameObject.tag = "gun23";
                 this.transform.GetChild(0).gameObject.SetActive(false);  //锁
                 transform.GetChild(2).gameObject.SetActive(true);
@@ -424,7 +425,7 @@ public class Box : MonoBehaviour
                 transform.GetChild(3).localScale = new Vector3(0.6f, 0.6f);
                 transform.SetParent(transform.parent.parent);
                 break;
-            case "27": 
+            case "27":
                 if (transform.GetComponent<Box>().IsHaveWheel)
                 {
                     transform.GetChild(1).gameObject.SetActive(true);  //显示轮子
@@ -439,7 +440,7 @@ public class Box : MonoBehaviour
                 transform.GetChild(3).localScale = new Vector3(0.6f, 0.6f);
                 transform.SetParent(transform.parent.parent);
                 break;
-            case "28": 
+            case "28":
                 if (transform.GetComponent<Box>().IsHaveWheel)
                 {
                     transform.GetChild(1).gameObject.SetActive(true);  //显示轮子
@@ -713,7 +714,7 @@ public class Box : MonoBehaviour
     {
 
         DataManager.Instance.LoadAllFrame();
-        for (int i = 0; i <DataManager.Instance.frame.Length; i++)
+        for (int i = 0; i < DataManager.Instance.frame.Length; i++)
         {
 
             switch (DataManager.Instance.frame[i])
@@ -750,7 +751,7 @@ public class Box : MonoBehaviour
         {
             CheckBox();
         }
-      
+
     }
 
 

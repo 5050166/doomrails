@@ -131,10 +131,10 @@ public class SpawnBall : MonoBehaviour
         {
             ballfromespawn = Instantiate(ballprefab[Random.Range(0, 5)], new Vector3((float)array[UnityEngine.Random.Range(0, array.Length)] * 10000f, -2000f), Quaternion.identity);
         }
-        // GameObject gameObject = Instantiate(ballprefab[Random.Range(0, 4)], new Vector3((float)array[UnityEngine.Random.Range(0, array.Length)] * 10000f, -2000f), Quaternion.identity);
+      
 
         ballfromespawn.transform.SetParent(BallBox);
-        // gameObject.transform.localPosition = new Vector3((float)array[UnityEngine.Random.Range(0, array.Length)]* 1, 1000, 0);
+       
 
         ballfromespawn.SetActive(true);
 
@@ -233,17 +233,15 @@ public class SpawnBall : MonoBehaviour
                     if (currentlevelball <= difficultNumber && !Game_Controller.isPaused)    //没有暂停 开始游戏了
                                                                                              //场景内小球达到每一关的设定数量后不会继续生成小球  difficultNumber 就是每一关小球的数量
                     {
-                        SpawnBallFromSpawner(MainUI.Instance.upmenu.transform.parent.childCount * (DataManager.Instance.getCurrentLevel() + 1) * 2f,
-                         MainUI.Instance.upmenu.transform.parent.childCount * (DataManager.Instance.getCurrentLevel() + 1) * 2.5f);  //生成了小球
+                        SpawnBallFromSpawner(8 * (DataManager.Instance.getCurrentLevel() + 1) * 3f,
+                         8 * (DataManager.Instance.getCurrentLevel() + 1) * 3.5f);  //生成了小球
                         AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.EnemyRefresh);
 
-                        //Debug.LogError(difficultNumber);  //当前关卡要生成的小球数
-                        //Debug.LogError(currentlevelball);  //实际上生成数
                     }
                     else if (currentlevelball == difficultNumber)
                     {
                         this.transform.gameObject.SetActive(false);
-                        // Game_Controller.Instance.Cango = true;  //是在游戏中 小球已经生成完了    场景中所有小球已经全部消灭完毕
+
                     }
                     i++;
                     yield return new WaitForSeconds(balltime); //设定小球生成间隔
@@ -264,7 +262,6 @@ public class SpawnBall : MonoBehaviour
                     yield return new WaitForSeconds(RefreshTime);
                 }
 
-
             case "DeathMod":
                 while (true)
                 {
@@ -283,17 +280,14 @@ public class SpawnBall : MonoBehaviour
 
     }
 
-
     public IEnumerator Raise() //死亡模式
     {
         while (true)
         {
             RefreshTime -= 0.5f;
-            minlife += 20;
-            maxlife += 25;
-            Debug.LogError(RefreshTime);
-            Debug.LogError(minlife);
-            Debug.LogError(maxlife);
+            minlife += 30;
+            maxlife += 45;
+       
             yield return new WaitForSeconds(2f);//每隔多久难度加强一次
         }
     }
@@ -303,8 +297,8 @@ public class SpawnBall : MonoBehaviour
         while (true)
         {
             RefreshTime -= 0.5f;
-            minlife += 20;
-            maxlife += 25;
+            minlife +=30;
+            maxlife +=45;
 
             yield return new WaitForSeconds(2f);
         }

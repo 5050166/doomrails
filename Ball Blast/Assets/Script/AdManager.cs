@@ -23,27 +23,29 @@ public class AdManager : MonoBehaviour
         }
     }
 
-    public  void Awake()
+    public BannerView bannerView;
+    public RewardBasedVideoAd rewardBasedVideo;
+    public InterstitialAd interstitial;
+    public Text AdTestText;
+
+    public void Awake()
     {
         Instance = this;
     }
-
-    public BannerView bannerView;
-    public RewardBasedVideoAd rewardBasedVideo;
-
-    public Text AdTestText;
-
 
     void Start()
     {
 #if UNITY_ANDROID
         string AppId = "ca-app-pub-1129560958513637~7247686129";
 #endif
-        
+
         //初始化
         MobileAds.Initialize(AppId);
-         //横幅
-       RequestBanner();
+        //横幅
+        if (PlayerPrefs.GetInt("removead") == 0)
+        {
+            RequestBanner();
+        }
 
         //视屏
         rewardBasedVideo = RewardBasedVideoAd.Instance;
@@ -56,26 +58,91 @@ public class AdManager : MonoBehaviour
         // 视屏广告开始播放
         rewardBasedVideo.OnAdStarted += HandleRewardBasedVideoStarted;
         //视屏广告奖励
-     //   rewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
+        rewardBasedVideo.OnAdRewarded += HandleRewardBasedVideoRewarded;
         // 视屏广告关闭
         rewardBasedVideo.OnAdClosed += HandleRewardBasedVideoClosed;
         // 视频广告后台
         rewardBasedVideo.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
 
         //载入广告
-        RequestRewardBasedVideo();
+
+        if (PlayerPrefs.GetInt("removead") == 0)
+        {
+            RequestInterstitial();
+
+        }
         //图片
-        StartCoroutine(requestLoadVideo());
+        RequestRewardBasedVideo();
     }
 
-    private void RequestBanner()
+
+    //ca-app-pub-1129560958513637/9490706082
+
+    private void RequestInterstitial()  //载入插屏广告
+    {
+#if UNITY_ANDROID
+        string adUnitId = "ca-app-pub-1129560958513637/9490706082";
+#elif UNITY_IPHONE
+        string adUnitId = "ca-app-pub-1129560958513637/9490706082";
+#else
+  
+#endif
+
+        interstitial = new InterstitialAd(adUnitId);
+
+        // 插屏广告载入成功时执行
+        interstitial.OnAdLoaded += HandleOnAdLoadedForScreen;
+        // 插屏广告载入失败时
+        interstitial.OnAdFailedToLoad += HandleOnAdFailedToLoadForScreen;
+        //打开广告时
+        interstitial.OnAdOpening += HandleOnAdOpenedForScreen;
+        // 关闭广告时
+        interstitial.OnAdClosed += HandleOnAdClosedForScreen;
+
+        interstitial.OnAdLeavingApplication += HandleOnAdLeavingApplicationForScreen;
+
+        AdRequest request = new AdRequest.Builder().Build();
+        interstitial.LoadAd(request);
+    }
+
+    public void HandleOnAdLoadedForScreen(object sender, EventArgs args)
+    {
+        // 插屏广告载入成功时执行
+    }
+
+    public void HandleOnAdFailedToLoadForScreen(object sender, AdFailedToLoadEventArgs args)
+    {
+        // 插屏广告载入失败时
+        RequestInterstitial();
+    }
+
+    public void HandleOnAdOpenedForScreen(object sender, EventArgs args)
+    {
+        //打开广告时
+    }
+
+    public void HandleOnAdClosedForScreen(object sender, EventArgs args)
+    {
+        // 关闭广告时
+        interstitial.Destroy();  //销毁广告
+        RequestInterstitial();
+    }
+
+    public void HandleOnAdLeavingApplicationForScreen(object sender, EventArgs args)
+    {
+
+    }
+
+
+
+    private void RequestBanner()//载入横幅广告
     {
 
 #if UNITY_ANDROID
         string AppId = "ca-app-pub-1129560958513637/3711217055"; //测试id
 #endif
-        
-        bannerView = new BannerView(AppId,AdSize.Banner, AdPosition.Top);
+
+        bannerView = new BannerView(AppId, AdSize.Banner, AdPosition.Top);
 
         //广告点击事件注册
 
@@ -100,23 +167,23 @@ public class AdManager : MonoBehaviour
     }
     public void HandleOnAdLoaded(object sender, EventArgs args)
     {
-      //  AdTestText.text = "广告载入成功";
+        //  AdTestText.text = "广告载入成功";
     }
     public void HandleOnAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
-      //  AdTestText.text = "广告载入失败";
+        //  AdTestText.text = "广告载入失败";
     }
     public void HandleOnAdOpened(object sender, EventArgs args)
     {
-      //  AdTestText.text = "点击广告时触发";
+        //  AdTestText.text = "点击广告时触发";
     }
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
-      //  AdTestText.text = "广告关闭时触发";
+        //  AdTestText.text = "广告关闭时触发";
     }
     public void HandleOnAdLeavingApplication(object sender, EventArgs args)
     {
-      //  AdTestText.text = "游戏切换到后台时触发";
+        //  AdTestText.text = "游戏切换到后台时触发";
     }
 
 
@@ -132,27 +199,11 @@ public class AdManager : MonoBehaviour
 
     }
 
-    IEnumerator requestLoadVideo()
-    {
-        while (true)
-        {
-            if (!rewardBasedVideo.IsLoaded())
-            {
-            RequestRewardBasedVideo();
-            }
-            yield return new WaitForSeconds(80);
-        }
-        
-
-
-    }
-
-
 
     public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
     {
         //视屏广告已经载入成功
-    
+
     }
 
     public void HandleRewardBasedVideoFailedToLoad(object sender, AdFailedToLoadEventArgs args)
@@ -177,15 +228,13 @@ public class AdManager : MonoBehaviour
     {
         //视屏广告关闭后执行
         this.RequestRewardBasedVideo();//
-                                       //加钱？
 
 
-      
     }
 
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
     { //通过一个type和amount的奖励实例来描述给用户的奖励
-      //用户播放完毕后才给奖励
+      //视频广告奖励逻辑位置。此处可添加视频奖励的对应逻辑。
 
 
         GameObject coin = Instantiate(BuffSystem.Instance.coin, GameMod.Instance.AdButton.transform.localPosition, Quaternion.identity);
@@ -222,15 +271,24 @@ public class AdManager : MonoBehaviour
 
     }
 
-    public void GameOver()
+    public void GameOverForVideo()
     {
-        AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.ClickSound);
         if (rewardBasedVideo.IsLoaded())
         {
             rewardBasedVideo.Show(); //展示视屏广告
+
         }
+        AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.ClickSound);
     }
 
+
+    private void GameOverForScreen() //展示插屏广告
+    {
+        if (interstitial.IsLoaded())
+        {
+            interstitial.Show();
+        }
+    }
 
 
 

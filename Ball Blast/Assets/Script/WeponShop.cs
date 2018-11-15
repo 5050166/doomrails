@@ -110,42 +110,42 @@ public class WeponShop : MonoBehaviour
             {
                 case "gun1":  //普通炮
                     go.GetComponent<BoXPrice>().Price = 50;
-                    go.GetComponent<BoXPrice>().damage = 5;
+                    go.GetComponent<BoXPrice>().damage = 10;
                     go.GetComponent<BoXPrice>().speed = 0.5f;
                     go.GetComponent<BoXPrice>().bulletspeed = 2;
                     go.GetComponent<BoXPrice>().property = "NONE";
                     break;
                 case "gun2": //绿炮
                     go.GetComponent<BoXPrice>().Price =100;
-                    go.GetComponent<BoXPrice>().damage = 8;
-                    go.GetComponent<BoXPrice>().speed = 0.4f;
+                    go.GetComponent<BoXPrice>().damage =13;
+                    go.GetComponent<BoXPrice>().speed = 0.5f;
                     go.GetComponent<BoXPrice>().bulletspeed = 0.8f;
                     go.GetComponent<BoXPrice>().property = "NONE";
                     break;
                 case "gun3": //星星炮
                     go.GetComponent<BoXPrice>().Price = 200;
-                    go.GetComponent<BoXPrice>().damage = 11;
+                    go.GetComponent<BoXPrice>().damage =16;
                     go.GetComponent<BoXPrice>().speed = 0.45f;
                     go.GetComponent<BoXPrice>().bulletspeed = 2;
                     go.GetComponent<BoXPrice>().property = "DOUBLE BULLET";
                     break;
                 case "gun4": //旋转炮
                     go.GetComponent<BoXPrice>().Price =350;
-                    go.GetComponent<BoXPrice>().damage = 20;
+                    go.GetComponent<BoXPrice>().damage = 30;
                     go.GetComponent<BoXPrice>().speed = 0.5f;
                     go.GetComponent<BoXPrice>().bulletspeed = 0.7f;
                     go.GetComponent<BoXPrice>().property = "45°and-45°ROTATION";
                     break;
                 case "gun5":  //西红柿炮
                     go.GetComponent<BoXPrice>().Price =550;
-                    go.GetComponent<BoXPrice>().damage = 20;
+                    go.GetComponent<BoXPrice>().damage = 35;
                     go.GetComponent<BoXPrice>().speed = 0.5f;
                     go.GetComponent<BoXPrice>().bulletspeed = 0.8f;
                     go.GetComponent<BoXPrice>().property = "SELF ROTATION";
                     break;
                 case "gun6":  //方块炮
                     go.GetComponent<BoXPrice>().Price =660;
-                    go.GetComponent<BoXPrice>().damage = 30;
+                    go.GetComponent<BoXPrice>().damage = 40;
                     go.GetComponent<BoXPrice>().speed = 0.5f;
                     go.GetComponent<BoXPrice>().bulletspeed = 0.9f;
                     go.GetComponent<BoXPrice>().property = "NONE";
@@ -180,14 +180,14 @@ public class WeponShop : MonoBehaviour
                     break;
                 case "gun11": //弓箭
                     go.GetComponent<BoXPrice>().Price = 2000;
-                    go.GetComponent<BoXPrice>().damage = 25;
+                    go.GetComponent<BoXPrice>().damage = 20;
                     go.GetComponent<BoXPrice>().speed = 0.2f;
                     go.GetComponent<BoXPrice>().bulletspeed = 2;
                     go.GetComponent<BoXPrice>().property = "NONE";
                     break;
                 case "gun12": //黑袍
                     go.GetComponent<BoXPrice>().Price = 2600;
-                    go.GetComponent<BoXPrice>().damage =75;
+                    go.GetComponent<BoXPrice>().damage =40;
                     go.GetComponent<BoXPrice>().speed = 0.7f;
                     go.GetComponent<BoXPrice>().bulletspeed = 1.1f;
                     go.GetComponent<BoXPrice>().property = "NONE";
@@ -201,14 +201,14 @@ public class WeponShop : MonoBehaviour
                     break;
                 case "gun14": //闪电
                     go.GetComponent<BoXPrice>().Price = 4000;
-                    go.GetComponent<BoXPrice>().damage = 20;
+                    go.GetComponent<BoXPrice>().damage = 15;
                     go.GetComponent<BoXPrice>().speed = 0.1f;
                     go.GetComponent<BoXPrice>().bulletspeed = 1;
                     go.GetComponent<BoXPrice>().property = "NONE";
                     break;
                 case "gun15": //喷火器
                     go.GetComponent<BoXPrice>().Price = 4800;
-                    go.GetComponent<BoXPrice>().damage =70;
+                    go.GetComponent<BoXPrice>().damage =65;
                     go.GetComponent<BoXPrice>().speed = 1f;
                     go.GetComponent<BoXPrice>().bulletspeed = 0.5f;
                     go.GetComponent<BoXPrice>().property = "PENETRATE";
@@ -223,7 +223,7 @@ public class WeponShop : MonoBehaviour
                     break;
                 case "gun17": //音波
                     go.GetComponent<BoXPrice>().Price =6100;
-                    go.GetComponent<BoXPrice>().damage =100;
+                    go.GetComponent<BoXPrice>().damage =65;
                     go.GetComponent<BoXPrice>().speed = 0.4f;
                     go.GetComponent<BoXPrice>().bulletspeed = 0.6f;
                     go.GetComponent<BoXPrice>().property = "PENETRATE";
@@ -241,19 +241,19 @@ public class WeponShop : MonoBehaviour
                     break;
                 case "gun20":
                     go.GetComponent<BoXPrice>().Price =3000;
-                    go.GetComponent<BoXPrice>().property = "ALL WEAPON ATTACK SPEED +20%";
+                    go.GetComponent<BoXPrice>().property = "ALL WEAPON ATTACK SPEED +10%";
                     break;
                 case "gun21":
                     go.GetComponent<BoXPrice>().Price = 8000;
-                    go.GetComponent<BoXPrice>().property = "ALL WEAPON ATTACK SPEED +35%";
+                    go.GetComponent<BoXPrice>().property = "ALL WEAPON ATTACK SPEED +20%";
                     break;
                 case "gun22":
                     go.GetComponent<BoXPrice>().Price = 3000;
-                    go.GetComponent<BoXPrice>().property = "ALL WEAPON DAMAGE +20%";
+                    go.GetComponent<BoXPrice>().property = "ALL WEAPON DAMAGE +10%";
                     break;
                 case "gun23":
                     go.GetComponent<BoXPrice>().Price = 8000;
-                    go.GetComponent<BoXPrice>().property = "ALL WEAPON DAMAGE +35%";
+                    go.GetComponent<BoXPrice>().property = "ALL WEAPON DAMAGE +20%";
                     break;
                 case "gun24":
                     go.GetComponent<BoXPrice>().Price = 1000;
@@ -265,42 +265,42 @@ public class WeponShop : MonoBehaviour
                     break;
                 case "gun26": //奶酪
                     go.GetComponent<BoXPrice>().Price = 8400;
-                    go.GetComponent<BoXPrice>().damage = 200;
+                    go.GetComponent<BoXPrice>().damage = 130;
                     go.GetComponent<BoXPrice>().speed = 0.5f;
                     go.GetComponent<BoXPrice>().bulletspeed = 1;
                     go.GetComponent<BoXPrice>().property = "NONE";
                     break;
                 case "gun27": //土炮
                     go.GetComponent<BoXPrice>().Price =10000;
-                    go.GetComponent<BoXPrice>().damage =250;
+                    go.GetComponent<BoXPrice>().damage =200;
                     go.GetComponent<BoXPrice>().speed = 0.5f;
                     go.GetComponent<BoXPrice>().bulletspeed = 0.5f;
                     go.GetComponent<BoXPrice>().property = "NONE";
                     break;
                 case "gun28": //针筒
                     go.GetComponent<BoXPrice>().Price =12000;
-                    go.GetComponent<BoXPrice>().damage =200;
+                    go.GetComponent<BoXPrice>().damage =100;
                     go.GetComponent<BoXPrice>().speed = 0.3f;
                     go.GetComponent<BoXPrice>().bulletspeed = 1;
                     go.GetComponent<BoXPrice>().property = "NONE";
                     break;
                 case "gun29": //风扇
                     go.GetComponent<BoXPrice>().Price =15000;
-                    go.GetComponent<BoXPrice>().damage =130;
+                    go.GetComponent<BoXPrice>().damage =80;
                     go.GetComponent<BoXPrice>().speed = 0.6f;
                     go.GetComponent<BoXPrice>().bulletspeed =1;
                     go.GetComponent<BoXPrice>().property = "PENETRATE";
                     break;
                 case "gun30": //火箭筒
                     go.GetComponent<BoXPrice>().Price =20000;
-                    go.GetComponent<BoXPrice>().damage = 300;
+                    go.GetComponent<BoXPrice>().damage = 250;
                     go.GetComponent<BoXPrice>().speed =0.6f;
                     go.GetComponent<BoXPrice>().bulletspeed = 1.5f;
                     go.GetComponent<BoXPrice>().property = "NONE";
                     break;
                 case "gun31": //飞刀
                     go.GetComponent<BoXPrice>().Price = 30000;
-                    go.GetComponent<BoXPrice>().damage = 150;
+                    go.GetComponent<BoXPrice>().damage = 95;
                     go.GetComponent<BoXPrice>().speed = 0.8f;
                     go.GetComponent<BoXPrice>().bulletspeed =0.5f;
                     go.GetComponent<BoXPrice>().property = "PENETRATE";
@@ -314,14 +314,14 @@ public class WeponShop : MonoBehaviour
                     break;
                 case "gun33"://加特林
                     go.GetComponent<BoXPrice>().Price =50000;
-                    go.GetComponent<BoXPrice>().damage =200;
+                    go.GetComponent<BoXPrice>().damage =120;
                     go.GetComponent<BoXPrice>().speed = 0.11f;
                     go.GetComponent<BoXPrice>().bulletspeed = 3;
                     go.GetComponent<BoXPrice>().property = "HIGH SPEED";
                     break;
                 case "gun34": //三角
                     go.GetComponent<BoXPrice>().Price = 60000;
-                    go.GetComponent<BoXPrice>().damage = 190;
+                    go.GetComponent<BoXPrice>().damage = 110;
                     go.GetComponent<BoXPrice>().speed = 0.3f;
                     go.GetComponent<BoXPrice>().bulletspeed =0.8f;
                     go.GetComponent<BoXPrice>().property = "PENETRATE";
@@ -335,21 +335,21 @@ public class WeponShop : MonoBehaviour
                     break;
                 case "gun36"://电磁
                     go.GetComponent<BoXPrice>().Price =80000;
-                    go.GetComponent<BoXPrice>().damage = 470;
+                    go.GetComponent<BoXPrice>().damage = 200;
                     go.GetComponent<BoXPrice>().speed = 0.35f;
                     go.GetComponent<BoXPrice>().bulletspeed = 2;
                     go.GetComponent<BoXPrice>().property = "NONE";
                     break;
                 case "gun37": //大激光
                     go.GetComponent<BoXPrice>().Price =90000;
-                    go.GetComponent<BoXPrice>().damage =200;
+                    go.GetComponent<BoXPrice>().damage =125;
                     go.GetComponent<BoXPrice>().speed = 0.5f;
                     go.GetComponent<BoXPrice>().bulletspeed = 2;
                     go.GetComponent<BoXPrice>().property = "PENETRATE";
                     break;
                 case "gun38": //紫水晶
                     go.GetComponent<BoXPrice>().Price =100000;
-                    go.GetComponent<BoXPrice>().damage = 500;
+                    go.GetComponent<BoXPrice>().damage =200;
                     go.GetComponent<BoXPrice>().speed =0.1f;
                     go.GetComponent<BoXPrice>().bulletspeed =0.3f;
                     go.GetComponent<BoXPrice>().property = "HIGH SHOOT SPPED HIGH DAMAGE";

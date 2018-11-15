@@ -9,13 +9,13 @@ public class MainUI : MonoBehaviour
     public GameObject spawnner;//生成点
 
     public GameObject sold;
+
     private static MainUI instance;
     public Text coinText;
+    public Text lifeText;//生命值
 
     public Text message;
     public bool isunlock = false;
-
-
     public GameObject shakeloop;
     public GameObject buymenu;  //弹出来的消息框 messagebox
     public GameObject Mainui;
@@ -44,10 +44,12 @@ public class MainUI : MonoBehaviour
 
     private void Start()
     {
-     
+        //  MainMenuUI.Instance.IsHidenOrShow();
         shakeloop = this.transform.GetChild(0).gameObject;
 
         UpdateCoinText(); //载入更新金币
+                          //载入生命值信息
+
         audioSource = this.transform.GetComponent<AudioSource>();
         //载入横幅广告
         shakeloop.transform.DOScale(new Vector3(0.75f, 0.75f, 0.75f), 0.7f).SetLoops(-1, LoopType.Yoyo);
@@ -85,16 +87,17 @@ public class MainUI : MonoBehaviour
         Game_Controller.isPaused = true;   //进游戏不是直接开始
         instance = this;
     }
-    private void Update()
-    {
 
+    public void UpdateLifeText() //更新生命值的文本
+    {
+        lifeText.text = "X " + PlayerPrefs.GetInt("life").ToString();
     }
+
+
+
     public void UpdateCoinText() //金币
     {
-
-
         coinText.text = "X " + PlayerPrefs.GetInt("coin").ToString();
-
     }
     public void PauseMod() //暂停创造模式
     {
@@ -148,44 +151,62 @@ public class MainUI : MonoBehaviour
         {
             case "LevelMod":
                 //关卡模式
-                buyui.SetActive(false);
-                GameMod.Instance.AdButton.transform.DOScale(0, 0.2f);
-                StartCoroutine(GameMod.Instance.wait());
-                GameMod.Instance.Homebutton.transform.DOScale(0, 0.2f);
-                levelbox.gameObject.SetActive(false);
-                Game_Controller.isEnd = false;
-                //开始按钮
-                AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.ClickSound);
-                BuffSystem.Instance.Setbuff();
-                BuffSystem.Instance.RefreshAllBox();
-                BuffSystem.Instance.restnumber();
-                Game_Controller.isPaused = false;  //可以移动开火
-                sold.transform.DOScaleY(0, 0.3f);                                      //隐藏出售按钮
-                weaponitem.DOScaleY(0, 0f);                                         //隐藏武器背包
-                this.transform.DOScaleY(0f, 0.3f);                                   //引导并没关闭而是调整了scal值
-                upmenu.SetActive(false);
-                MainMenuUI.Instance.slider.gameObject.SetActive(true);             //显示进度条
-                MainMenuUI.Instance.slidertext.text = "LV. " + PlayerPrefs.GetInt("Level");
-                spawnner.SetActive(true); //开始生成敌人
-                SpawnBall.instance.currentlevelball = 0;
-                //Debug.LogError(PlayerPrefs.GetInt("Level"));
-                GameMod.Instance.Isplayerdie = false;
-                MainMenuUI.Instance.slider.onValueChanged.AddListener(delegate   //添加监听
+                if (PlayerPrefs.GetInt("life") > 0)
                 {
-                    MainMenuUI.Instance.CheckProgressBar();
-                });
-                Background.Instance.Move();
+                    buyui.SetActive(false);
+                    GameMod.Instance.AdButton.transform.DOScale(0, 0.2f);
+                    StartCoroutine(GameMod.Instance.wait());
+                    GameMod.Instance.Homebutton.transform.DOScale(0, 0.2f);
+                    levelbox.gameObject.SetActive(false);
+                    Game_Controller.isEnd = false;
+                    //开始按钮
+                    AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.ClickSound);
+                    BuffSystem.Instance.Setbuff();
+                    BuffSystem.Instance.RefreshAllBox();
+                    BuffSystem.Instance.restnumber();
+                    Game_Controller.isPaused = false;  //可以移动开火
+                    sold.transform.DOScaleY(0, 0.3f);                                      //隐藏出售按钮
+                    weaponitem.DOScaleY(0, 0f);                                         //隐藏武器背包
+                    this.transform.DOScaleY(0f, 0.3f);                                   //引导并没关闭而是调整了scal值
+                    upmenu.SetActive(false);
+                    MainMenuUI.Instance.slider.gameObject.SetActive(true);             //显示进度条
+                    MainMenuUI.Instance.slidertext.text = "LV. " + PlayerPrefs.GetInt("Level");
+                    spawnner.SetActive(true); //开始生成敌人
+                    SpawnBall.instance.currentlevelball = 0;
+                    GameMod.Instance.Isplayerdie = false;
+                    MainMenuUI.Instance.slider.onValueChanged.AddListener(delegate   //添加监听
+                    {
+                        MainMenuUI.Instance.CheckProgressBar();
+                    });
+                    Background.Instance.Move();
+
+
+                    if (MainMenuUI.Instance.Gift.activeSelf) //隐藏盒子
+                    {
+                        PlayerPrefs.SetInt("gif", 1);
+                        MainMenuUI.Instance.Gift.SetActive(false);//如果礼物盒子还是开着的就隐藏盒子
+
+                    }
+                }
+                else
+                {
+                    GameMod.Instance.nolife.transform.DOScale(1, 0.2f);
+                    AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.BuildFail);
+                }
+
                 break;
 
             case "TimeMod":
                 //时间模式
+
+
                 Game_Controller.isEnd = false;
                 AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.ClickSound);
                 BuffSystem.Instance.Setbuff();
                 BuffSystem.Instance.RefreshAllBox();
                 BuffSystem.Instance.restnumber();
                 Game_Controller.isPaused = false;  //可以移动开火
-          
+
                 buyui.SetActive(false);
                 sold.transform.DOScaleY(0, 0.3f);                                      //隐藏出售按钮
                 weaponitem.DOScaleY(0, 0f);                                         //隐藏武器背包
@@ -197,13 +218,14 @@ public class MainUI : MonoBehaviour
                 break;
             case "DeathMod":
                 //死亡模式
+
                 Game_Controller.isEnd = false;
                 AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.ClickSound);
                 BuffSystem.Instance.Setbuff();
                 BuffSystem.Instance.RefreshAllBox();
                 BuffSystem.Instance.restnumber();
                 Game_Controller.isPaused = false;                                          //可以移动开火
-        
+
                 buyui.SetActive(false);
                 sold.transform.DOScaleY(0, 0.3f);                                      //隐藏出售按钮
                 weaponitem.DOScaleY(0, 0f);                                         //隐藏武器背包
@@ -224,7 +246,7 @@ public class MainUI : MonoBehaviour
     }
 
     public void Yesbutton()
-    {     
+    {
         if (PlayerPrefs.GetInt("coin") > box.GetComponent<Box>().Price)
         {
             audioSource.PlayOneShot(AudioManager.Instance.Click); //click 
@@ -232,7 +254,7 @@ public class MainUI : MonoBehaviour
             Debug.Log(num);
             PlayerPrefs.SetInt("coin", num);
             UpdateCoinText();
-           
+
             isunlock = true;
 
             if (this.gameObject.activeSelf)
@@ -270,7 +292,7 @@ public class MainUI : MonoBehaviour
         if (buymenu.activeSelf)
         {
             buymenu.transform.DOScale(0, 0.1f).OnComplete(() => buymenu.SetActive(false));
-     
+
         }
         else
         {

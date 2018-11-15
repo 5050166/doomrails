@@ -40,9 +40,6 @@
 /// The will leave application callback into Unity.
 @property(nonatomic, assign) GADURewardBasedVideoAdWillLeaveApplicationCallback willLeaveCallback;
 
-/// The did complete callback into Unity.
-@property(nonatomic, assign) GADURewardBasedVideoAdDidCompleteCallback didCompleteCallback;
-
 // Returns the mediation adapter class name.
 @property(nonatomic, readonly, copy) NSString *mediationAdapterClassName;
 

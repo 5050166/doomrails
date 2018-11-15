@@ -36,6 +36,7 @@ public class BuffSystem : MonoBehaviour
     public int Framenumber;
 
     private static BuffSystem instance;
+
     public static BuffSystem Instance
     {
         get
@@ -48,7 +49,6 @@ public class BuffSystem : MonoBehaviour
             instance = value;
         }
     }
-
 
     private void Awake()
     {
@@ -64,8 +64,6 @@ public class BuffSystem : MonoBehaviour
    
 
     }
-
-
 
     public void restnumber()
     {
@@ -130,15 +128,15 @@ public class BuffSystem : MonoBehaviour
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.5f - 0.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[0];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 2f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 5f + 5f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 10f + 10f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun2":
 
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.4f - 0.4f * ShootBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.5f - 0.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[1];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.8f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 8f + 8f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 13f + 13f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun3":
@@ -146,7 +144,7 @@ public class BuffSystem : MonoBehaviour
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.45f - 0.45f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[2];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 2f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 11f + 11f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 16f + 16f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun4":
@@ -154,21 +152,21 @@ public class BuffSystem : MonoBehaviour
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.5f - 0.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[3];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.7f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 20f + 20f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 30f + 30f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun5":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.5f - 0.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[4];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.8f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 20f + 20f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 35f + 35f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun6":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.5f - 0.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[5];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.9f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 30f + 30f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 40f + 40f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun7":
@@ -203,7 +201,7 @@ public class BuffSystem : MonoBehaviour
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.2f - 0.2f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[10];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 2f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 25f + 25f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 20f + 20f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun12":
@@ -224,7 +222,7 @@ public class BuffSystem : MonoBehaviour
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.1f - 0.1f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[13];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 1f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 20f + 20f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 15f + 15f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun15":
@@ -238,14 +236,14 @@ public class BuffSystem : MonoBehaviour
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed =0.5f - 0.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[15];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.7f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 130f +130f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 65f +65f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun17":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.4f - 0.4f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[16];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.6f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 100f +100f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =65f +65f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun18":
@@ -298,42 +296,42 @@ public class BuffSystem : MonoBehaviour
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed =0.5f -0.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[18];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 1f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 200f + 200f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 130f + 130f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun27":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed =0.5f - 0.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[19];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.5f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =250f + 250f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =200f + 200f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun28":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.3f -0.3f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[20];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 1f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =200f + 200f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =100f + 100f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun29":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.6f - 0.6f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[21];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 1f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =130f +130f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =80f +80f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun30":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed =0.6f -0.6f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[22];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.3f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 300f + 300f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 250f + 250f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun31":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.5f -0.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[23];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.5f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 150f + 150f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 95f + 95f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun32":
@@ -347,14 +345,14 @@ public class BuffSystem : MonoBehaviour
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed =0.2f -0.2f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[25];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 3f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 200f + 200f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 120f +120f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun34":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.3f - 0.3f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[26];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.8f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 190f + 190f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =110f + 110f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun35":
@@ -368,21 +366,21 @@ public class BuffSystem : MonoBehaviour
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.35f - 0.35f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[28];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 2f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 470f +470f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 200f +200f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun37":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed =1.5f -1.5f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[29];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 200f +200f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage = 125f +125f * DamageBuff;
                     weapnumber++;
                     break;
                 case "gun38":
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().ShootSpeed = 0.1f -0.1f * ShootBuff;
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet = Prefabmanager.Instance.bullets[30];
                     item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().speed = 0.3f;//设定子弹的速度
-                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =500f + 500f * DamageBuff;
+                    item.transform.GetChild(3).GetChild(0).GetComponent<Gun>().bullet.GetComponent<Bullet>().damage =200f + 200f * DamageBuff;
                     weapnumber++;
                     break;
                 default:

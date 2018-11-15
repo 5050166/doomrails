@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip Water;
     public AudioClip Amethyst;
     public AudioClip TimeModBGM;
+    public AudioClip addlife;
 
     public AudioClip BuildFail;//安装失败
     public AudioClip ClickSound; //按钮音效

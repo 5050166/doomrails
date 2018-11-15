@@ -64,7 +64,7 @@ public class Ball : MonoBehaviour
     {
 
         canMove = false;
-        canRotate = false;       
+        canRotate = false;
 
         sr = this.GetComponent<Image>();
 
@@ -74,7 +74,6 @@ public class Ball : MonoBehaviour
 
         FirstMovement();
 
-        canva = GameObject.Find("player").transform;
         ballbox = GameObject.Find("BallBox").transform;
     }
 
@@ -189,7 +188,7 @@ public class Ball : MonoBehaviour
                 this.countValue = 1;//小球等级
                 break;
             case 2:
-                this.scale = 0.36f;
+                this.scale = 0.4f;
 
                 this.xValue = -510f;
                 this.yMin = -690f;
@@ -197,7 +196,7 @@ public class Ball : MonoBehaviour
                 this.countValue = 2;
                 break;
             case 3:
-                this.scale = 0.4f;
+                this.scale = 0.5f;
 
                 this.xValue = -530f;
                 this.yMin = -690f;
@@ -301,7 +300,7 @@ public class Ball : MonoBehaviour
                 icecream.transform.SetParent(this.transform.parent);
                 icecream.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, -10f);
                 icecream.transform.eulerAngles = new Vector3(-90f, 0, 0f);
-                icecream.transform.localScale = new Vector3(2.6f, 2.6f,2.6f);
+                icecream.transform.localScale = new Vector3(2.6f, 2.6f, 2.6f);
                 AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.Rocket);
             }
 
@@ -324,7 +323,7 @@ public class Ball : MonoBehaviour
                 icecream.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, -10f);
                 icecream.transform.eulerAngles = new Vector3(-90f, 0, 0f);
                 icecream.transform.localScale = new Vector3(1f, 1f, 1f);
-               
+
                 AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.Water);
             }
             else if (col.name.Contains("Bullet 5")) //西红柿炮
@@ -353,7 +352,7 @@ public class Ball : MonoBehaviour
                 medic.transform.SetParent(this.transform.parent);
                 medic.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, -10f);
                 medic.transform.eulerAngles = new Vector3(-90f, 0, 0f);
-                medic.transform.localScale = new Vector3(1.5f,1.5f, 1.5f);
+                medic.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
                 AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.NeedleGUn);
             }
@@ -368,11 +367,11 @@ public class Ball : MonoBehaviour
                 AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.ElectromagneticGun);
             }
 
-            if (col.name.Contains("Bullet 8") || col.name.Contains("Bullet 15") || col.name.Contains("Bullet 17")|| col.name.Contains("Bullet 30")
-                || col.name.Contains("Bullet 22") || col.name.Contains("Bullet 24") || col.name.Contains("Bullet 27")|| col.name.Contains("Bullet 28"))
-       
+            if (col.name.Contains("Bullet 8") || col.name.Contains("Bullet 15") || col.name.Contains("Bullet 17") || col.name.Contains("Bullet 30")
+                || col.name.Contains("Bullet 22") || col.name.Contains("Bullet 24") || col.name.Contains("Bullet 27")/* || col.name.Contains("Bullet 28")*/)
+
             {
-                //不用销毁子弹 啥也不做
+                //穿透子弹命中石头后不会销毁子弹
             }
             else
             {
@@ -405,66 +404,6 @@ public class Ball : MonoBehaviour
             }
         }
 
-        else if (col.gameObject.tag == "Player") //玩家死亡
-        {
-
-            //if (Game_Controller.secondChance)  //点击了继续游戏（续命）
-            //{
-            // MainMenuUI.instance.OpenSecondChanceUI();
-            // Destroy(this.gameObject);
-            //}
-            //else
-            //{ 
-
-            if (UnityEngine.Random.Range(1, 100) < BuffSystem.Instance.Framenumber)//进行死亡判定
-            {
-                  GameMod.Instance.Isplayerdie = false; //玩家没死
-
-                GameObject go = Instantiate(Prefabmanager.Instance.miss, this.transform.localPosition, Quaternion.identity);
-                go.transform.localScale = Vector3.zero;
-                Destroy(go, 1f);
-                go.transform.SetParent(canva);
-                go.transform.localPosition = canva.transform.GetChild(0).transform.localPosition;
-                go.transform.DOScale(1f, 0.5f);
-            }
-            else 
-            {
-                //if (GameMod.Instance.GameMods == "TimeMod")
-                //{
-                //    if (GameMod.Instance.time > PlayerPrefs.GetFloat("HighTime")) //存储最长存活时间
-                //    {
-                //        GameMod.Instance.CurrentTime.text = "Max Time:" + ((Mathf.Round(GameMod.Instance.time * 1000)) / 1000).ToString();
-                //        PlayerPrefs.SetFloat("HighTime", Mathf.Round(GameMod.Instance.time * 1000)/ 1000);
-                //    }
-                //}
-                GameMod.Instance.Isplayerdie = true;
-                Game_Controller.isEnd = false;
-                AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.Playerdie);
-                GameObject go = Instantiate(Game_Controller.Instance.playerdieExp, PlayerController.Instance.transform.localPosition, Quaternion.identity); //创建特效
-                go.transform.SetParent(PlayerController.Instance.transform.parent);
-                go.transform.localPosition = PlayerController.Instance.transform.localPosition;
-
-                go.transform.localScale = PlayerController.Instance.transform.localScale * 0.7f;
-                for (int i = 0; i < DataManager.Instance.bo.Count; i++)
-                {
-                    DataManager.Instance.bo[i].gameObject.AddComponent<Rigidbody2D>();
-                    DataManager.Instance.bo[i].GetComponent<BoxCollider2D>().isTrigger = false;
-                }
-                GameMod.Instance.can = false;
-                //Game_Controller.isEnd = true;
-                MainMenuUI.Instance.OpenEndUI();
-                AudioManager.Instance.source.PlayOneShot(AudioManager.Instance.GameFail);
-
-
-            }
-
-            //MainUI.Instance.buyui.SetActive(true);
-            //MainUI.Instance.gameObject.transform.DOScaleY(1f, 0.7f);
-            //MainUI.Instance.weaponitem.DOScaleY(1f, 0.7f);
-            //Background.Instance.IsFinish = false;
-            //   MainMenuUI.instance.OpenEndUI();
-            //}
-        }
     }
 
 

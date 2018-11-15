@@ -20,24 +20,7 @@ public class CoinNumber : MonoBehaviour
 
     private float direction = 1f;
 
-    //public void OnFadeComplete(string name) {
-
-    //    if (name=="Fade")
-    //    {
-    //        GameObjectPool.Instance.CloseGameObjectImmediately(this.gameObject);
-    //        StopCoroutine("WaitFadeComplete");
-    //    }
-
-    //}
-
-
-    //IEnumerator WaitFadeComplete(string name ,float waittime)
-    //{
-    //    yield return new WaitForSeconds(waittime);
-    //    OnFadeComplete(name);
-
-    //}
-
+    
 
 
 
@@ -65,6 +48,13 @@ public class CoinNumber : MonoBehaviour
     {
         this.tm.text = ca.ToString() + "$";
     }
+    public void setnumber(int nu)
+    {
+        this.tm.text = "+"+nu.ToString();
+
+    }
+
+
 
 
     private void Update()

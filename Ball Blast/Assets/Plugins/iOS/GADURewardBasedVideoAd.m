@@ -119,10 +119,4 @@
   }
 }
 
-- (void)rewardBasedVideoAdDidCompletePlaying:(GADRewardBasedVideoAd *)rewardBasedVideoAd {
-  if (self.didCompleteCallback) {
-    self.didCompleteCallback(self.rewardBasedVideoAdClient);
-  }
-}
-
 @end

@@ -25,6 +25,8 @@ public class Game_Controller : MonoBehaviour
 
     public GameObject icecream; //冰淇凌特效
 
+    public GameObject goldexp;//金币特效
+
     public GameObject BigRocket;
 
     public GameObject Homemade;
@@ -40,6 +42,10 @@ public class Game_Controller : MonoBehaviour
     public GameObject tomato;//西红柿
 
     public GameObject electromagnetic; //电磁
+
+    public GameObject giftopen; //打开礼物的特效
+
+    public GameObject giftshow;//显示礼物的特效
 
     public static int damage = 1;
 
@@ -231,7 +237,7 @@ public class Game_Controller : MonoBehaviour
         SpawnBall.instance.Deadball = 0;
         MainMenuUI.Instance.slider.value = 0;
         MainMenuUI.Instance.Level.text = " Level:" + (PlayerPrefs.GetInt("Level")).ToString();//读取当前关卡
-        go.transform.parent.transform.localPosition = new Vector3(0, -611f, 0);
+        go.transform.parent.transform.localPosition = new Vector3(0, -591f, 0); //设定玩家位置
         go.transform.parent.transform.GetComponent<BoxCollider2D>().offset = new Vector2(-50f, -70);
         GameMod.Instance.Homebutton.transform.DOScale(1, 0.2f);
         isEnd = true;                                 //游戏结束暂停动画

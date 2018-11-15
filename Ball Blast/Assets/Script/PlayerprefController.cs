@@ -35,6 +35,18 @@ public class PlayerprefController : MonoBehaviour  //储存游戏中的各项数值
         {
             PlayerPrefs.SetInt("OfflineTime", 0);
         }
+        if (!PlayerPrefs.HasKey("removead"))
+        {
+            PlayerPrefs.SetInt("removead", 0);
+        }
+        if (!PlayerPrefs.HasKey("life"))
+        {
+            PlayerPrefs.SetInt("life",10);
+        }
+        if (!PlayerPrefs.HasKey("gif"))
+        {
+            PlayerPrefs.SetInt("gif",0); //是否已经开了礼物 0 没开 1 开过了
+        }
 
     }
 

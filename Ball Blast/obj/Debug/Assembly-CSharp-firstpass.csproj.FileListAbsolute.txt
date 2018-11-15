@@ -174,3 +174,17 @@ E:\unityDeom\Ball Blast\obj\Debug\Assembly-CSharp-firstpass.csproj.CoreCompileIn
 E:\unityDeom\Ball Blast\obj\Debug\Assembly-CSharp-firstpass.csproj.CopyComplete
 E:\unityDeom\Ball Blast\obj\Debug\Assembly-CSharp-firstpass.dll
 E:\unityDeom\Ball Blast\obj\Debug\Assembly-CSharp-firstpass.pdb
+E:\unityDeom\Ball Blast\Temp\bin\Debug\Apple.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\ChannelPurchase.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\Editor.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\Facebook.Unity.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\Facebook.Unity.Gameroom.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\Facebook.Unity.Settings.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\FacebookNamedPipeClient.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\FacebookStore.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\Purchasing.Common.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\Security.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\Stores.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\Tizen.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\UnityStore.dll
+E:\unityDeom\Ball Blast\Temp\bin\Debug\winrt.dll

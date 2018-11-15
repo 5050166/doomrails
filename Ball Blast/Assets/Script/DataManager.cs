@@ -16,6 +16,8 @@ public class DataManager : MonoBehaviour   //不继承自mon 可以不用挂在�
 
     public List<Box> bo = new List<Box>();//用来存储所有的box
 
+    public List<Box> boxes = new List<Box>();
+
     public List<ItemLock> ItemBox = new List<ItemLock>();  //存储所有的ItemBox
 
     public List<Vector3> boposition = new List<Vector3>();
@@ -42,11 +44,8 @@ public class DataManager : MonoBehaviour   //不继承自mon 可以不用挂在�
 
     public void Awake()
     {
-     
         instance = this;
         AddBox();
-        LoadBox();//读
-
     }
     private void Start()
     {
@@ -55,9 +54,19 @@ public class DataManager : MonoBehaviour   //不继承自mon 可以不用挂在�
         {
             LoadAllFrame();
         }
-      
+
     }
 
+    public void AddBox() //添加所有盒子
+    {
+        go = GameObject.Find("player/upmenu").gameObject;
+        for (int i = 0; i < go.transform.childCount; i++)
+        {
+            bo.Add(go.transform.GetChild(i).GetComponent<Box>());
+            boposition.Add(bo[i].transform.localPosition);  //并没考虑到格子移出去的情况所以需要重新遍历一遍
+            //Debug.Log(i);
+        }
+    }
 
     public void SaveAllFrame()
     {
@@ -74,17 +83,43 @@ public class DataManager : MonoBehaviour   //不继承自mon 可以不用挂在�
 
     public void LoadAllFrame()
     {
-        frame = ES3.Load<string[]>("frame");
+        if (ES3.KeyExists("frame"))
+        {
+            frame = ES3.Load<string[]>("frame");
+
+        }
     }
 
-    public void AddBox()
+    public void savebox()
     {
-        go = GameObject.Find("player/upmenu").gameObject;
-        for (int i = 0; i < go.transform.childCount; i++)
+        ES3.Save<List<Box>>("box", bo);
+    }
+
+    public void loadbox()
+    {
+        if (ES3.FileExists("SaveData.es3"))
         {
-            bo.Add(go.transform.GetChild(i).GetComponent<Box>());
-            boposition.Add(bo[i].transform.localPosition);  //并没考虑到格子移出去的情况所以需要重新遍历一遍
-            //Debug.Log(i);
+            if (ES3.KeyExists("box"))
+            {
+                boxes = ES3.Load<List<Box>>("box");
+
+            }
+        }
+        if (boxes.Count > 0)
+        {
+            //读取信息
+            for (int i = 0; i < go.transform.childCount; i++)
+            {
+                Debug.Log(bo[i].Number);
+                bo[i].Number = boxes[i].Number;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < go.transform.childCount; i++)
+            {
+                bo[i].Number = " ";
+            }
         }
 
 
@@ -100,135 +135,143 @@ public class DataManager : MonoBehaviour   //不继承自mon 可以不用挂在�
         return PlayerPrefs.GetInt("Level");       //读
     }
 
-    public void SetSaveItemBox(List<ItemLock> boxes) //存box信息
-    {
-        string text = string.Empty;
-        foreach (ItemLock item in boxes)
-        {
-            string texte2 = text;
-            text = string.Concat(new object[] {
-                texte2,item.Number,"#"
+    // public void SetSaveItemBox(List<ItemLock> boxes) //存box信息
+    //{
+    //    string text = string.Empty;
+    //    foreach (ItemLock item in boxes)
+    //    {
+    //        string texte2 = text;
+    //        text = string.Concat(new object[] {
+    //            texte2,item.Number,"#"
 
-            });
+    //        });
 
-        }
-        if (text.Length > 0)
-        {
-            text = text.Substring(0, text.Length - 1);
-        }
-        
-        PlayerPrefs.SetString(PREFS_ITEMBOX, text); //存储信息
-    }
+    //    }
+    //    if (text.Length > 0)
+    //    {
+    //        text = text.Substring(0, text.Length - 1);
+    //    }
 
-    public List<string> GetItemBox()//读取box信息
-    {
-        List<string> list = new List<string>();
-        string @string = PlayerPrefs.GetString(this.PREFS_ITEMBOX);
-        if (@string == null || @string.Length == 0)
-        {
-            return new List<string>();
-        }
-        string[] arry = @string.Split(new char[] {
-            '#'
-        });
-        for (int i = 0; i < arry.Length; i++)
-        {
-            string a = arry[i];
-            //Debug.Log(a);
-            list.Add(a);
-        }
-        return list;
+    //    PlayerPrefs.SetString(PREFS_ITEMBOX, text); //存储信息
+    //}
 
-    }
+    //public List<string> GetItemBox()//读取box信息
+    //{
+    //    List<string> list = new List<string>();
+    //    string @string = PlayerPrefs.GetString(this.PREFS_ITEMBOX);
+    //    if (@string == null || @string.Length == 0)
+    //    {
+    //        return new List<string>();
+    //    }
+    //    string[] arry = @string.Split(new char[] {
+    //        '#'
+    //    });
+    //    for (int i = 0; i < arry.Length; i++)
+    //    {
+    //        string a = arry[i];
+    //        //Debug.Log(a);
+    //        list.Add(a);
+    //    }
+    //    return list;
 
-
-
-    public void SetSaveBox(List<Box> boxes) //存box信息
-    {
-        string text = string.Empty;
-        foreach (Box item in boxes)
-        {
-            string texte2 = text;
-            text = string.Concat(new object[] {
-                texte2,item.Number,"#"
-
-            });
-
-        }
-        if (text.Length > 0)
-        {
-            text = text.Substring(0, text.Length - 1);
-        }
-
-        PlayerPrefs.SetString(PREFS_BOX, text); //存储信息
-        Debug.Log(text);
-
-    }
-
-    public List<string> GetBox()//读取box信息
-    {
-        List<string> list = new List<string>();
-        string @string = PlayerPrefs.GetString(this.PREFS_BOX);
-        if (@string == null || @string.Length == 0)
-        {
-            return new List<string>();
-        }
-        string[] arry = @string.Split(new char[] {
-            '#'
-        });
-        for (int i = 0; i < arry.Length; i++)
-        {
-            string a = arry[i];
-            list.Add(a);
-        }
-        return list;
+    //}
 
 
-    }
 
-    public void LoadBox()
-    {
-        List<string> box = GetBox();
-        if (box.Count > 0)
-        {//读取信息
-            for (int i = 0; i < go.transform.childCount; i++)
-            {
-                bo[i].Number = box[i];
-            }
-        }
-        else
-        {
-            for (int i = 0; i < go.transform.childCount; i++)
-            {
-                bo[i].Number = " ";
-            }
-        }
+    //public void SetSaveBox(List<Box> boxes) //存box信息
+    //{
+    //    string text = string.Empty;
+    //    foreach (Box item in boxes)
+    //    {
+    //        string texte2 = text;
+    //        text = string.Concat(new object[] {
+    //            texte2,item.Number,"#"
 
-    }
+    //        });
 
-    public string FormatTwoTime(int totalSeconds)
+    //    }
+    //    if (text.Length > 0)
+    //    {
+    //        text = text.Substring(0, text.Length - 1);
+    //    }
+
+    //    PlayerPrefs.SetString(PREFS_BOX, text); //存储信息
+    //    Debug.Log(text);
+
+    //}
+
+    //public List<string> GetBox()//读取box信息
+    //{
+    //    List<string> list = new List<string>();
+    //    string @string = PlayerPrefs.GetString(this.PREFS_BOX);
+    //    if (@string == null || @string.Length == 0)
+    //    {
+    //        return new List<string>();
+    //    }
+    //    string[] arry = @string.Split(new char[] {
+    //        '#'
+    //    });
+    //    for (int i = 0; i < arry.Length; i++)
+    //    {
+    //        string a = arry[i];
+    //        list.Add(a);
+    //    }
+    //    return list;
+
+
+    //}
+
+    //public void LoadBox() //读取box number
+    //{
+    //    List<string> box = GetBox();
+    //    if (box.Count > 0)
+    //    {//读取信息
+    //        for (int i = 0; i < go.transform.childCount; i++)
+    //        {
+    //            bo[i].Number = box[i];
+    //        }
+    //    }
+    //    else
+    //    {
+    //        for (int i = 0; i < go.transform.childCount; i++)
+    //        {
+    //            bo[i].Number = " ";
+    //        }
+    //    }
+    //}
+
+    public string FormatTwoTime(int totalSeconds)//显示分钟
     {
         int minutes = totalSeconds / 60;
+
         string mm = minutes < 10f ? "0" + minutes : minutes.ToString();
         int seconds = (totalSeconds - (minutes * 60));
         string ss = seconds < 10 ? "0" + seconds : seconds.ToString();
         return string.Format("{0}:{1}", mm, ss);
     }
 
-    public void SaveOfflineTime()
+    public string FormatTwoTimeForhour(int totalSeconds)  //显示小时
     {
-        ES3.Save<DateTime>("time", DateTime.Now);
+        int hours = totalSeconds / 3600;
+        string hh = hours < 10 ? "0" + hours : hours.ToString();
+        int minutes = (totalSeconds - hours * 3600) / 60;
+        string mm = minutes < 10f ? "0" + minutes : minutes.ToString();
+        int seconds = totalSeconds - hours * 3600 - minutes * 60;
+        string ss = seconds < 10 ? "0" + seconds : seconds.ToString();
+        return string.Format("{0}:{1}:{2}", hh, mm, ss);
+    }
+
+    public void SaveOfflineTime()//存储退出时间
+    {
+        ES3.Save<DateTime>("offtime", DateTime.Now);
 
     }
 
-
-
-
     private void OnApplicationQuit()
     {
-        SetSaveBox(bo);
+        savebox();
         SaveAllFrame();
-        SetSaveItemBox(ItemBox);
+
 
         if (EndUI.Instance.cansave)
         {
@@ -236,22 +279,20 @@ public class DataManager : MonoBehaviour   //不继承自mon 可以不用挂在�
         }
         else
         {
-            ES3.Save<int>("DeathModTime",GameMod.Instance.number);
+            ES3.Save<int>("DeathModTime", GameMod.Instance.number);
         }
-        SaveOfflineTime();//存储离线时间
-      //  Debug.LogError(ES3.Load<int>("DeathModTime"));
+        SaveOfflineTime();
+
     }
-
-
-
 
     private void OnApplicationPause(bool pause)
     {
         if (pause)
         {
-            SetSaveBox(bo);
+            savebox();
+
             SaveAllFrame();
-            SetSaveItemBox(ItemBox);
+
             if (EndUI.Instance.cansave)
             {
                 EndUI.Instance.SaveDeathModTIme();
@@ -265,6 +306,16 @@ public class DataManager : MonoBehaviour   //不继承自mon 可以不用挂在�
         }
         else
         {
+            //恢复游戏时检测时间
+            if (GameMod.Instance.number < 0)
+            {
+                StopCoroutine(GameMod.Instance.ColdTimes());
+                GameMod.Instance.ColdTime.text = "coin x 3";
+                GameMod.Instance.DeathModButton.interactable = true;
+
+            }
+
+
 
         }
 
