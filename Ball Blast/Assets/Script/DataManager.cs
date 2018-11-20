@@ -104,7 +104,19 @@ public class DataManager : MonoBehaviour   //不继承自mon 可以不用挂在�
                 boxes = ES3.Load<List<Box>>("box");
 
             }
+            else //没有存储
+            {
+                MainMenuUI.Instance.gun1.GetComponent<Box>().Number = "1";
+                MainMenuUI.Instance.gun1.tag = "gun1";
+                MainMenuUI.Instance.gun2.GetComponent<Box>().Number = "1";
+                MainMenuUI.Instance.gun2.tag = "gun1";
+                MainMenuUI.Instance.gun3.GetComponent<Box>().Number = "39";
+                MainMenuUI.Instance.gun3.tag = "gun39";
+                MainMenuUI.Instance.gun4.GetComponent<Box>().Number = "39";
+                MainMenuUI.Instance.gun4.tag = "gun39";
+            }
         }
+
         if (boxes.Count > 0)
         {
             //读取信息
@@ -119,7 +131,16 @@ public class DataManager : MonoBehaviour   //不继承自mon 可以不用挂在�
             for (int i = 0; i < go.transform.childCount; i++)
             {
                 bo[i].Number = " ";
-            }
+            }//没有获取到存档的时候为防止出错 
+
+            MainMenuUI.Instance.gun1.GetComponent<Box>().Number = "1";
+            MainMenuUI.Instance.gun1.tag = "gun1";
+            MainMenuUI.Instance.gun2.GetComponent<Box>().Number = "1";
+            MainMenuUI.Instance.gun2.tag = "gun1";
+            MainMenuUI.Instance.gun3.GetComponent<Box>().Number = "39";
+            MainMenuUI.Instance.gun3.tag = "gun39";
+            MainMenuUI.Instance.gun4.GetComponent<Box>().Number = "39";
+            MainMenuUI.Instance.gun4.tag = "gun39";
         }
 
 

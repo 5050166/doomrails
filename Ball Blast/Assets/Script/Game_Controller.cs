@@ -221,7 +221,7 @@ public class Game_Controller : MonoBehaviour
         go5.transform.SetParent(this.transform);
         go5.transform.localPosition = new Vector3(UnityEngine.Random.Range(-400f, 400f), UnityEngine.Random.Range(50f, 850f));
         go5.transform.localScale = Vector3.one;
-
+      
         MainUI.Instance.spawnner.SetActive(false);
         MainUI.Instance.buyui.SetActive(true);
         currentLevel++;           //关卡++
@@ -240,6 +240,7 @@ public class Game_Controller : MonoBehaviour
         go.transform.parent.transform.localPosition = new Vector3(0, -591f, 0); //设定玩家位置
         go.transform.parent.transform.GetComponent<BoxCollider2D>().offset = new Vector2(-50f, -70);
         GameMod.Instance.Homebutton.transform.DOScale(1, 0.2f);
+        MainMenuUI.Instance.LoadGifBox();
         isEnd = true;                                 //游戏结束暂停动画
                                      //游戏暂停
         Isplaying = false;

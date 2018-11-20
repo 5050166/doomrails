@@ -33,12 +33,12 @@ public class MissleBullet : MonoBehaviour
     }
 
 
-    private void FixedUpdate()
+    private void FixedUpdate()//物理组件运动方法写这儿
     {
         this.ball = GameObject.FindGameObjectsWithTag("ball");
         if (GameObject.FindGameObjectsWithTag("ball").Length != 0)
         {
-            this.target = this.ball[0].transform.position; //待定
+            this.target = this.ball[0].transform.position; //找到了敌人
         }
         else if (GameObject.FindGameObjectsWithTag("ball").Length == 0) //没有获取到敌人的时候就直接向前发射
         {
@@ -47,7 +47,7 @@ public class MissleBullet : MonoBehaviour
         Vector2 v = this.target - this.transform.position;
         v.Normalize();//数值变小归一化
         float z = Vector3.Cross(v, base.transform.up).z;
-        this.rb.angularVelocity = -z * this.rotateSpeed;
+        this.rb.angularVelocity = -z * this.rotateSpeed; 
         this.rb.velocity = base.transform.up * this.transform.GetComponent<Bullet>().speed;
     }
 
